@@ -2,8 +2,8 @@ package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
 import java.time.LocalDate;
 
-public class Project {
-    private Integer id;
+public class Project extends EntityBase {
+//    private Integer id;
     private String name;
     private String description;
     private String status; // criar enum
@@ -12,6 +12,7 @@ public class Project {
     private Integer userId;
 
     public Project(Build build) {
+        super(build.id);
         this.name = build.name;
         this.description = build.description;
         this.status = build.status;
@@ -21,9 +22,9 @@ public class Project {
         this.id = build.id;
     }
 
-    public Integer getId() {
-        return id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -86,37 +87,37 @@ public class Project {
         private LocalDate endDate;
         private Integer userId;
 
-        public Build setId(Integer id) {
+        public Build Id(Integer id) {
             this.id = id;
             return this;
         }
 
-        public Build setName(String name) {
+        public Build Name(String name) {
             this.name = name;
             return this;
         }
 
-        public Build setDescription(String description) {
+        public Build Description(String description) {
             this.description = description;
             return this;
         }
 
-        public Build setStatus(String status) {
+        public Build Status(String status) {
             this.status = status;
             return this;
         }
 
-        public Build setStartDate(LocalDate startDate) {
+        public Build StartDate(LocalDate startDate) {
             this.startDate = startDate;
             return this;
         }
 
-        public Build setEndDate(LocalDate endDate) {
+        public Build EndDate(LocalDate endDate) {
             this.endDate = endDate;
             return this;
         }
 
-        public Build setUserId(Integer userId) {
+        public Build UserId(Integer userId) {
             this.userId = userId;
             return this;
         }

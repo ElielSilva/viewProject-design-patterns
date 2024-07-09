@@ -1,13 +1,14 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class User {
-    private Integer id;
+public class User extends EntityBase {
+//    private Integer id;
     private String name;
     private String email;
     private String password;
     private String role;
 
     public User(Build build) {
+        super(build.id);
         this.name = build.name;
         this.email = build.email;
         this.password = build.password;
@@ -15,9 +16,9 @@ public class User {
         this.id = build.id;
     }
 
-    public Integer getId() {
-        return id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -55,34 +56,34 @@ public class User {
         this.role = role;
     }
 
-    public class Build {
+    public static class Build {
         private Integer id;
         private String name;
         private String email;
         private String password;
         private String role;
 
-        public Build setId(Integer id) {
+        public Build Id(Integer id) {
             this.id = id;
             return this;
         }
 
-        public Build setName(String name) {
+        public Build Name(String name) {
             this.name = name;
             return this;
         }
 
-        public Build setEmail(String email) {
+        public Build Email(String email) {
             this.email = email;
             return this;
         }
 
-        public Build setPassword(String password) {
+        public Build Password(String password) {
             this.password = password;
             return this;
         }
 
-        public Build setRole(String role) {
+        public Build Role(String role) {
             this.role = role;
             return this;
         }
