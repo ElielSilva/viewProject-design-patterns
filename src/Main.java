@@ -4,7 +4,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.DAO.DAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
-import br.edu.ifpe.viewProjectDesgnPatterns.services.UserService;
+import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
 
 import java.time.LocalDate;
 
