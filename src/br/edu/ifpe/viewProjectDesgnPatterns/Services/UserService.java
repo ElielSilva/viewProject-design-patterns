@@ -1,7 +1,6 @@
-package br.edu.ifpe.viewProjectDesgnPatterns.services;
+package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.DAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
-import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 
 import java.util.List;
