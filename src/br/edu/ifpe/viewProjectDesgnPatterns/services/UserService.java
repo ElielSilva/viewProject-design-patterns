@@ -9,6 +9,7 @@ import java.util.List;
 public class UserService {
     public IDAO<User> instance;
 
+
     public UserService() {
         instance =  FabricDAO.fabric();
     }
