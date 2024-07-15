@@ -7,13 +7,10 @@ import java.util.List;
 public class DAO<T extends EntityBase> implements IDAO<T> {
     private  List<T> database = new ArrayList<T>();
 
-    private static DAO instance;
 
-    public static <T> DAO<T> getInstance() {
-        if (instance == null) {
-            instance = new DAO<T>();
-        }
-        return instance;
+    public static <T extends EntityBase> DAO<T> getInstance() {
+        
+        return new DAO<T>();
     }
 
     @Override
