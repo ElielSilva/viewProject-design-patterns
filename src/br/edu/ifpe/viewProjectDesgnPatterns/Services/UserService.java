@@ -8,9 +8,9 @@ import java.util.List;
 public class UserService {
     public IDAO<User> instance;
 
+
     public UserService() {
-        Object User;
-        instance =  new DAO<User>();
+        instance =  FabricDAO.fabric();
     }
 
     public List<User> getAllUser () {
@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public User getUser (int id) {
-        return instance.getUser(id);
+        return instance.getById(id);
     }
 
     public boolean createUser (User user) {

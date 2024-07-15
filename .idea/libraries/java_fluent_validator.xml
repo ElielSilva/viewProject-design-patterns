@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-fluent-validator">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ExternalLib/java-fluent-validator.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

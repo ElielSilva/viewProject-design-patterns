@@ -1,5 +1,6 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
-import br.edu.ifpe.viewProjectDesgnPatterns.DAO.DAO;
+import br.com.fluentvalidator.AbstractValidator;
+import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
 
@@ -7,10 +8,11 @@ import java.util.List;
 
 public class ProjectService {
     public IDAO<Project> instance;
+    public AbstractValidator<Project> validator;
 
     public ProjectService() {
-        Object User;
-        instance =  new DAO<Project>();
+        instance = FabricDAO.fabric();
+
     }
 
     public List<Project> getAllProject () {
