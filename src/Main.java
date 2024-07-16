@@ -1,5 +1,7 @@
 import br.com.fluentvalidator.Validator;
 import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.ProjectValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.UserValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Controller.UserController;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.DAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
@@ -7,6 +9,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -16,18 +19,36 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
 
         //a.createUser(new User().Builder().name())
-        User u = new User.Build().Id(1).Name("Eliel").Email("a@a.com").Password("123").Role("cleint").build();
 
-        Project p = new Project.Build().Id(2).Name("jaaaa").StartDate(LocalDate.parse("2000-01-01")).build();
-        ProjectValidate x = new ProjectValidate();
-        var resultValidator = x.validate(p);
-        System.out.println(resultValidator);
-        UserService a = new UserService();
-        a.createUser(u);
+        //  Project p = new Project.Build().Id(2).Name("jaaaa").StartDate(LocalDate.parse("2000-01-01")).build();
+////        ProjectValidate x = new ProjectValidate();
+//        var resultValidator = x.validate(p);
+//        System.out.println(resultValidator);
+//        UserService a = new UserService();
+//        a.createUser(u);
 
-        System.out.printf(u.getName());
-        System.out.printf(a.getAllUser().getFirst().getName());
 
+        //User u = new User.Build().Id(1).Name("Eliel").Email("aaa.com").Password("123").Role("cleint").build();
+        // UserValidate U = new UserValidate();
+        //var UU = U.validate(u);
+
+        //       System.out.println("UU");
+
+        //  System.out.println(UU);
+        //System.out.printf(a.getAllUser().getFirst().getName());
+
+        //Scanner Input = new Scanner(System.in);  // Create a Scanner object
+        //System.out.println("Enter Opção");
+
+        //int opcao = -1;  // Read user input
+
+        //while (opcao != 0) {
+        // opcao = Input.nextInt();
+        //   switch (opcao) {
+        //        case 1:
+
+        //   }
+        ////}
 
     }
 }

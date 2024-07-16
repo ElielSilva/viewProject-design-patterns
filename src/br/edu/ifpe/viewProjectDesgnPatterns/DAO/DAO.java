@@ -19,13 +19,16 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
             .stream()
             .filter(user -> user.getId() == id).toList().get(0);
         if (userResult == null) {
-            throw new RuntimeException("usuario não existe");
+            throw new RuntimeException("User not found");
         }
         return userResult;
     }
 
     @Override
     public List<T> getAll() {
+        if (database.isEmpty()) {
+            throw new RuntimeException("database is empty");
+        }
         return (List<T>) database;
     }
 

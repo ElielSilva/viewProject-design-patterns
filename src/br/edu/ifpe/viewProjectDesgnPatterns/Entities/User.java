@@ -5,7 +5,7 @@ public class User extends EntityBase {
     private String name;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     public User(Build build) {
         super(build.id);
@@ -48,11 +48,11 @@ public class User extends EntityBase {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -61,7 +61,7 @@ public class User extends EntityBase {
         private String name;
         private String email;
         private String password;
-        private String role;
+        private Role role;
 
         public Build Id(Integer id) {
             this.id = id;
@@ -83,7 +83,7 @@ public class User extends EntityBase {
             return this;
         }
 
-        public Build Role(String role) {
+        public Build Role(Role role) {
             this.role = role;
             return this;
         }
