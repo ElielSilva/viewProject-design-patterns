@@ -1,8 +1,10 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.DAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.EntityBase;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class DAO<T extends EntityBase> implements IDAO<T> {
     private  List<T> database = new ArrayList<T>();
@@ -15,13 +17,9 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
 
     @Override
     public T getById(int id) {
-        var userResult = (T) database
+        return (T) database
             .stream()
-            .filter(user -> user.getId() == id).toList().get(0);
-        if (userResult == null) {
-            throw new RuntimeException("User not found");
-        }
-        return userResult;
+            .filter(data -> data.getId() == id).findFirst().orElseThrow();
     }
 
     @Override
@@ -41,8 +39,7 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
 
     @Override
     public void delete(int id) {
-        database = database.stream().filter(u -> u.getId() != id).toList();
-        return;
+        database = database.stream().filter(data -> data.getId() != id).toList();
     }
 
     @Override
@@ -51,5 +48,19 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
         delete(id);
         database.add(entity);
         return entity;
+    }
+
+    @Override
+    public T search(Predicate<T> predicate) throws NotFoundEntity {
+        return database
+                .stream()
+                .filter(predicate)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundEntity("Entidate não encontrada"));
+    }
+
+    @Override
+    public boolean IsExist(int id) {
+        return database.stream().anyMatch(x -> x.getId() == id);
     }
 }
