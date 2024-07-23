@@ -1,15 +1,4 @@
-import br.com.fluentvalidator.Validator;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.ProjectValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.UserValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Controller.UserController;
-import br.edu.ifpe.viewProjectDesgnPatterns.DAO.DAO;
-import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
-import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
-
-import java.time.LocalDate;
-import java.util.Scanner;
+import br.edu.ifpe.viewProjectDesgnPatterns.Apresentation.Apresentation;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -50,5 +39,8 @@ public class Main {
         //   }
         ////}
 
+
+        Apresentation app = Apresentation.getinstaceApresentationUnique();
+        app.DesktopScreen();
     }
 }

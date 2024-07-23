@@ -8,21 +8,21 @@ public class User extends EntityBase {
     private Role role;
 
     public User(Build build) {
-        super(build.id);
+//        super(build.id);
         this.name = build.name;
         this.email = build.email;
         this.password = build.password;
         this.role = build.role;
-        this.id = build.id;
+//        this.id = build.id;
     }
 
 //    public Integer getId() {
 //        return id;
 //    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -57,16 +57,16 @@ public class User extends EntityBase {
     }
 
     public static class Build {
-        private Integer id;
+//        private Integer id;
         private String name;
         private String email;
         private String password;
         private Role role;
 
-        public Build Id(Integer id) {
-            this.id = id;
-            return this;
-        }
+//        public Build Id(Integer id) {
+//            this.id = id;
+//            return this;
+//        }
 
         public Build Name(String name) {
             this.name = name;
