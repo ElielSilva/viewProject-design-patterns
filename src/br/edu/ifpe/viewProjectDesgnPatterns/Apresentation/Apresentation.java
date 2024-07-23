@@ -20,7 +20,7 @@ public class Apresentation {
         return instaceApresentationUnique;
     }
 
-    public void DesktopScreen () {
+    public void DesktopScreen () throws Exception {
         Scanner Input = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
@@ -44,14 +44,19 @@ public class Apresentation {
 
     }
 
-    private void addUser(Scanner Input) {
+    private void addUser(Scanner Input) throws Exception {
         System.out.println("Digite o nome do usuario");
         String name = Input.nextLine();
         System.out.println("Digite o Email");
         String email = Input.nextLine();
         System.out.println("Digite o Password");
         String password = Input.nextLine();
-        boolean result = userService.add(new User.Build().Name(name).Email(email).Password(password).Role(Role.CLIENT).build());
+        boolean result = false;
+        try {
+            result = userService.add(new User.Build().Name(name).Email(email).Password(password).Role(Role.CLIENT).build());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (result) {
             System.out.println("adicionado com sucesso");
         }

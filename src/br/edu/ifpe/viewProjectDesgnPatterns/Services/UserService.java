@@ -1,20 +1,18 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
-import br.com.fluentvalidator.AbstractValidator;
-import br.com.fluentvalidator.context.ValidationResult;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.AdapterValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.UserValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Apresentation.Apresentation;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.FabricValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.IValidateAdapter;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
+    public IDAO<User> instance;
     private static UserService InstanceUserService;
-    public IDAO<User> instanceUserDAO;
-    private  AdapterValidate InstanceUserValidate = new AdapterValidate();
+    private IValidateAdapter validate;
 
     public static UserService getInstanceUserService() {
         if (InstanceUserService == null) {
@@ -23,69 +21,70 @@ public class UserService {
         return InstanceUserService;
     }
 
+
     public UserService() {
-        instanceUserDAO =  FabricDAO.fabric();
+        instance =  FabricDAO.fabric();
+        this.validate = FabricValidate.getValidate();
     }
 
     public List<User> getAllUser () {
-        try{
-            return instanceUserDAO.getAll();
-        }
-        catch (Exception e) {
-
-            return new ArrayList<User>();
-        }
+        return instance.getAll();
     }
 
     public User getUser (int id) {
-        try {
-            return instanceUserDAO.getById(id);
-        } catch (Exception exception) {
-            return exception.getMessage();
+        try{
+            return instance.getById(id);
+        }catch (Exception e) {
+            throw e;
         }
+    }
 
+    private boolean valid(User u) {
+        return validate.IsValid(u.getName(), u.getEmail(), u.getPassword());
     }
 
     public boolean createUser (User entity) throws Exception {
         try {
-            boolean result = InstanceUserValidate.isValidate(entity.getName(), entity.getEmail(),entity.getPassword());
-            if (result) {
-                instanceUserDAO.add(entity);
+            if (valid(entity)) {
+                instance.add(entity);
                 return true;
             }
-            throw new Exception("Not Implemented");
+            throw new DataContractValidate("Dados invalidos");
         }catch (Exception e) {
             throw new Exception("Not Implemented");
         }
     }
 
-    public boolean add(User entity) {
-
-        boolean result = InstanceUserValidate.isValidate(entity.getName(), entity.getEmail(),entity.getPassword());
-        if (result) {
-            instanceUserDAO.add(entity);
-            return true;
+    public boolean add(User entity) throws Exception {
+        try {
+            if (valid(entity)) {
+                instance.add(entity);
+                return true;
+            }
+            throw new DataContractValidate("Dados invalidos");
+        }catch (Exception e) {
+            throw new Exception("Not Implemented");
         }
-        return false;
     }
 
     public void delete(int id) throws Exception {
         try {
-            instanceUserDAO.delete(id);
+            instance.delete(id);
         }catch (Exception e) {
             throw new Exception("Not Implemented");
         }
     }
 
-    public User update(User entity) throws Exception {
-        try {
-            boolean result = InstanceUserValidate.isValidate(entity.getName(), entity.getEmail(),entity.getPassword());
-            if (result) {
-                return instanceUserDAO.update(entity);
+
+
+    public User update(User entity) throws NotFoundEntity, DataContractValidate {
+        if (valid(entity)) {
+            if (instance.IsExist(entity.id)) {
+                return instance.update(entity);
             }
-            return entity;
-        }catch (Exception e) {
-            throw new Exception("Not Implemented");
+            throw new NotFoundEntity("Usuario Não encontrado");
+        } else {
+            throw new DataContractValidate("Dados invalidos");
         }
     }
 }
