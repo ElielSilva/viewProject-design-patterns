@@ -69,6 +69,12 @@ public class UserService {
         }
     }
 
+    public User search(String param) {
+        if (param == "name") {
+            instance.search()
+        }
+    }
+
     private boolean validate(User e) {
         return validate.IsValid(e.getName(), e.getEmail(), e.getPassword());
     }
