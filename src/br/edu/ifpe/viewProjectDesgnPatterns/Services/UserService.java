@@ -1,19 +1,26 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 import br.com.fluentvalidator.AbstractValidator;
 import br.com.fluentvalidator.context.ValidationResult;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.UserValidate;
+import br.com.fluentvalidator.exception.ValidationException;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.EmailAndNameAndPasswordValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.FabricValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.Validate;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exceptions.DataContractValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exceptions.NoSearchEntity;
 
 import java.util.List;
 
 public class UserService {
     public IDAO<User> instance;
-    private AbstractValidator<User> UserValidateInstance = new UserValidate();
+    private final Validate validate;
 
     public UserService() {
+
         instance =  FabricDAO.fabric();
+        this.validate = FabricValidate.getValidate();
     }
 
     public List<User> getAllUser () {
@@ -23,19 +30,19 @@ public class UserService {
     public User getUser (int id) {
         try{
             return instance.getById(id);
-        }catch (Exception e) {
-            throw e;
+        } catch (NoSearchEntity e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public boolean createUser (User entity) throws Exception {
+    public boolean createUser (User entity) throws DataContractValidate, Exception {
         try {
-            ValidationResult result = UserValidateInstance.validate(entity);
-            if (result.isValid()) {
+            boolean result = validate(entity)
+            if (result) {
                 instance.add(entity);
                 return true;
             }
-            throw new Exception(result.toString());
+            throw new DataContractValidate("Falha na validação");
         }catch (Exception e) {
             throw new Exception("Not Implemented");
         }
@@ -43,12 +50,12 @@ public class UserService {
 
     public boolean add(User entity) throws Exception {
         try {
-            ValidationResult result = UserValidateInstance.validate(entity);
-            if (result.isValid()) {
+            boolean result = validate.IsValid(entity.getName());
+            if (result) {
                 instance.add(entity);
                 return true;
             }
-            throw new Exception(result.toString());
+            throw new DataContractValidate();
         }catch (Exception e) {
             throw new Exception("Not Implemented");
         }
@@ -62,10 +69,14 @@ public class UserService {
         }
     }
 
+    private boolean validate(User e) {
+        return validate.IsValid(e.getName(), e.getEmail(), e.getPassword());
+    }
+
     public User update(User entity) throws Exception {
         try {
-            ValidationResult result = UserValidateInstance.validate(entity);
-            if (result.isValid()) {
+            boolean result = validate(entity);
+            if (result) {
                 return instance.update(entity);
             }
             return entity;

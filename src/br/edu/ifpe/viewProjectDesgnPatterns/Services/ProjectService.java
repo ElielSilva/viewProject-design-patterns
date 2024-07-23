@@ -3,6 +3,7 @@ import br.com.fluentvalidator.AbstractValidator;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exceptions.NoSearchEntity;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class ProjectService {
         return instance.getAll();
     }
 
-    public Project getProject (int id) {
+    public Project getProject (int id) throws NoSearchEntity {
         return instance.getById(id);
     }
 
