@@ -1,9 +1,13 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
+import br.edu.ifpe.viewProjectDesgnPatterns.Decorator.IProjects;
+
 import java.time.LocalDate;
 
-public class Project extends EntityBase {
+public class Project extends EntityBase implements IProjects {
 //    private Integer id;
+    private final Double VALUE = 0.0;
+
     private String name;
     private String description;
     private String status; // criar enum
@@ -20,14 +24,6 @@ public class Project extends EntityBase {
         this.endDate = build.endDate;
         this.userId = build.userId;
         this.id = build.id;
-    }
-
-//    public Integer getId() {
-//        return id;
-//    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -76,6 +72,11 @@ public class Project extends EntityBase {
 
     public void setStartDate(LocalDate date) {
         this.startDate = date;
+    }
+
+    @Override
+    public double getValue() {
+        return VALUE;
     }
 
     public static class Build {
