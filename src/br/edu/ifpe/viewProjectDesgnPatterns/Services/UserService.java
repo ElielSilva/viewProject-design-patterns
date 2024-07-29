@@ -1,6 +1,6 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.FabricValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Adapter.IValidateAdapter;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.FabricValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.IValidateAdapter;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;

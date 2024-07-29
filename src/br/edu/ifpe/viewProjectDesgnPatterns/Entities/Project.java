@@ -1,7 +1,5 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-import br.edu.ifpe.viewProjectDesgnPatterns.Decorator.IProjects;
-
 import java.time.LocalDate;
 
 public class Project extends EntityBase implements IProjects {

@@ -1,4 +1,4 @@
-package br.edu.ifpe.viewProjectDesgnPatterns.Adapter;
+package br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator;
 
 import br.com.fluentvalidator.AbstractValidator;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.ValidateName;

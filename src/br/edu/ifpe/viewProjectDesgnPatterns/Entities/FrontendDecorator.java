@@ -1,10 +1,10 @@
-package br.edu.ifpe.viewProjectDesgnPatterns.Decorator;
+package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class Frontend implements IProjects {
+public class FrontendDecorator implements IProjects {
     private final double VALUE = 2000.0;
     private IProjects project;
 
-    public Frontend(IProjects project) {
+    public FrontendDecorator(IProjects project) {
         this.project = project;
     }
 

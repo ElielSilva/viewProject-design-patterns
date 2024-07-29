@@ -1,4 +1,4 @@
-package br.edu.ifpe.viewProjectDesgnPatterns.Adapter;
+package br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator;
 
 public interface IValidateAdapter {
     boolean IsValid(String name);
