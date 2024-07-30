@@ -34,7 +34,7 @@ public class UserService {
     public User getUser (int id) {
         try{
             return instance.getById(id);
-        }catch (Exception e) {
+        }catch (Exception e) { // tratar
             throw e;
         }
     }
