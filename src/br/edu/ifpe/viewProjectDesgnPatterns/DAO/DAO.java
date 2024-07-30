@@ -8,10 +8,9 @@ import java.util.function.Predicate;
 
 public class DAO<T extends EntityBase> implements IDAO<T> {
     private  List<T> database = new ArrayList<T>();
-
+    private int lastId = 0;
 
     public static <T extends EntityBase> DAO<T> getInstance() {
-        
         return new DAO<T>();
     }
 
@@ -33,6 +32,8 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
     @Override
     public boolean add(T entity) {
         int lengthInitialList = database.size();
+        this.lastId = database.size() + 1;
+        entity.setId(lastId);
         database.add(entity);
         return lengthInitialList != database.size();
     }

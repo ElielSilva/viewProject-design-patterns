@@ -62,7 +62,7 @@ public class UserService {
                 return true;
             }
             throw new DataContractValidate("Dados invalidos");
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Not Implemented");
         }
     }
