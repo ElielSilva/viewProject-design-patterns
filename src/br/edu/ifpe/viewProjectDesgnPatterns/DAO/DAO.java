@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public class DAO<T extends EntityBase> implements IDAO<T> {
     private  List<T> database = new ArrayList<T>();
     private int lastId = 0;
-
+    
     public static <T extends EntityBase> DAO<T> getInstance() {
         return new DAO<T>();
     }
@@ -39,12 +39,14 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws NotFoundEntity {
+        if (!this.isExist(id))
+            throw new NotFoundEntity("Entidade não encontrada");
         database = database.stream().filter(data -> data.getId() != id).toList();
     }
 
     @Override
-    public T update(T entity) {
+    public T update(T entity) throws NotFoundEntity {
         int id = entity.getId();
         delete(id);
         database.add(entity);
@@ -61,7 +63,7 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
     }
 
     @Override
-    public boolean IsExist(int id) {
+    public boolean isExist(int id) {
         return database.stream().anyMatch(x -> x.getId() == id);
     }
 }
