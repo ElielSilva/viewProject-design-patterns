@@ -3,28 +3,32 @@ import br.com.fluentvalidator.AbstractValidator;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.FabricDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.DAO.IDAO;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.FabricValidate;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.IValidateAdapter;
 
 import java.util.List;
 
-public class ProjectService {
-    public IDAO<Project> instance;
-    public AbstractValidator<Project> validator;
+public class ProjectService extends ServiceGeneric<Project> {
+    private static ProjectService InstanceService;
+    private final IValidateAdapter validate;
 
-    public ProjectService() {
-        instance = FabricDAO.fabric();
-
+    public static ProjectService getInstanceProjectService() {
+        if (InstanceService == null) {
+            InstanceService = new ProjectService();
+        }
+        return InstanceService;
     }
 
-    public List<Project> getAllProject () {
-        return instance.getAll();
+    private ProjectService() {
+        this.validate = FabricValidate.getValidate();
     }
 
-    public Project getProject (int id) {
-        return instance.getById(id);
-    }
-
-    public boolean createProject (Project project) {
-        instance.add(project);
-        return true;
+    @Override
+    protected void valid(Project entity) throws DataContractValidate {
+        if (!this.validate.IsValid(entity.getName())) {
+            throw new DataContractValidate("Nome ou descrição Invalido");
+        }
     }
 }
