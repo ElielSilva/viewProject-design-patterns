@@ -2,8 +2,6 @@ package br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator;
 
 import br.com.fluentvalidator.AbstractValidator;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.ValidateName;
-
-import static br.com.fluentvalidator.predicate.StringPredicate.stringMatches;
 import static br.com.fluentvalidator.predicate.StringPredicate.stringSizeBetween;
 
 public class NameValidate extends AbstractValidator<ValidateName> {
