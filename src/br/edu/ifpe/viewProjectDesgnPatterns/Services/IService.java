@@ -1,5 +1,6 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 
 import java.util.List;
@@ -10,6 +11,6 @@ public interface IService<T> {
     List<T> get();
     T get(int id) throws NotFoundEntity;
     T search(Predicate<T> predicate) throws NotFoundEntity;
-    void update(T entity) throws NotFoundEntity;
-    void delete(int id);
+    void update(T entity) throws NotFoundEntity, DataContractValidate;
+    void delete(int id) throws NotFoundEntity;
 }

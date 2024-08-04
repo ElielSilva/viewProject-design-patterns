@@ -39,7 +39,7 @@ public abstract class  ServiceGeneric<T extends EntityBase> implements IService<
     }
 
     public T get(int id) throws NotFoundEntity {
-        if (!dao.IsExist(id)) {
+        if (!dao.isExist(id)) {
             this.logger.log("Entity not found", LoggerType.ERROR);
             throw new NotFoundEntity("Usuario Não encontrado");
         }
@@ -55,25 +55,29 @@ public abstract class  ServiceGeneric<T extends EntityBase> implements IService<
         return entity;
     }
 
-    public void update(T entity) throws NotFoundEntity {
+    public void update(T entity) throws DataContractValidate, NotFoundEntity {
         try {
             this.valid(entity);
-            if (!dao.IsExist(entity.id)) {
-                throw new NotFoundEntity("Usuario Não encontrado");
-            }
             dao.update(entity);
             String message = "Updating entity" + entity.toString();
             this.logger.log(message, LoggerType.INFO);
-        } catch (DataContractValidate e) {
+        } catch (DataContractValidate | NotFoundEntity e) {
             String message = "Error updating entity" + entity.toString() + " " + e.getMessage();
             this.logger.log(message, LoggerType.ERROR);
+            throw e;
         }
     }
 
-    public void delete(int id) {
-        dao.delete(id);
-        String message = "Deleting entity" + id;
-        this.logger.log(message, LoggerType.INFO);
+    public void delete(int id) throws NotFoundEntity {
+        try {
+            dao.delete(id);
+            String message = "Deleting entity" + id;
+            this.logger.log(message, LoggerType.INFO);
+        } catch (NotFoundEntity e) {
+            String message = "Error deleting entity" + id + " " + e.getMessage();
+            this.logger.log(message, LoggerType.ERROR);
+            throw e;
+        }
     }
 
     protected abstract void valid(T entity) throws DataContractValidate;
