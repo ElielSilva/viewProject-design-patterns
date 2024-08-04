@@ -1,17 +1,17 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Apresentation;
 
-
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
-
-import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Apresentation {
     private static Apresentation instaceApresentationUnique;
     private UserService userService = UserService.getInstanceUserService();
+   // private ProjectService projectService = ProjectService.getInstanceProjectService();
     private Scanner scanner;
 
     public static Apresentation getinstaceApresentationUnique() {
@@ -32,19 +32,20 @@ public class Apresentation {
                     this.optionChose("Encerrar");
                     break;
                 case 1:
-                    this.optionChose("Adicionar user");
                     this.addUser();
                     break;
                 case 2:
-                    this.optionChose("Listar todos os usuarios");
-                    this.ListarUser();
+                    this.listUser();
                     break;
                 case 3:
-                    this.optionChose("Listar usuario por Id");
-                    this.ListarUserById();
+                    this.listUserById();
                     break;
-
-
+                case 4:
+                    this.deleteUser();
+                    break;
+                case 5:
+                    this.updateUser();
+                    break;
                 default:
                     System.out.println("opção invalida");
                     break;
@@ -52,56 +53,96 @@ public class Apresentation {
         }
     }
 
-    private void addUser() {
+    private User createNewUser(Integer id ) {
+        Optional<Integer> ln = Optional.ofNullable(id);
         System.out.println("Digite o nome do usuario: ");
         String name = this.scanner.nextLine();
         System.out.println("Digite o Email: ");
         String email = this.scanner.nextLine();
         System.out.println("Digite o Password: ");
         String password = this.scanner.nextLine();
+        if (ln.isPresent()) {
+            return new User.Build().id(id).name(name).email(email).password(password).role(Role.CLIENT).build();
+        }
+        return new User.Build().name(name).email(email).password(password).role(Role.CLIENT).build();
+    }
+
+    private void addUser() {
+        this.optionChose("Adicionar user");
         try {
-            userService.add(new User.Build().Name(name).Email(email).Password(password).Role(Role.CLIENT).build());
+            userService.add(createNewUser(null));
         } catch (Exception e) {
             System.out.println("erro ao adicionar");
-            AddLn();
         }
         System.out.println("adicionado com sucesso");
-        AddLn();
+        addLn();
 
     }
 
-    private void AddLn() {
+    private void addLn() {
         System.out.println("\n");
         System.out.println("\n");
     }
 
-    private void ListarUser() {
-        List<User> allUser = userService.getAllUser();
-        if (allUser.size() == 0) {
+    private void listUser() {
+        this.optionChose("Listar todos os usuarios");
+        List<User> allUser = userService.get();
+        if (allUser.isEmpty()) {
             System.out.println("não há usuarios");
         }
         for (User user : allUser) {
             System.out.println("usuario: "+ user.getName() + " Id: " + user.getId());
         }
-        AddLn();
+        addLn();
     }
 
-    private void ListarUserById() {
+    private void deleteUser() {
+        this.optionChose("Deletar usuario");
         System.out.println("Digite o id do usuario: ");
         int id = Integer.parseInt(this.scanner.nextLine());
-        User user = userService.getUser(id);
-        System.out.println("usuario: "+ user.getName() + " Id: " + user.getId());
-        AddLn();
+        try {
+            userService.delete(id);
+        } catch (NotFoundEntity e) {
+            System.out.println("erro ao deletar usuario");
+        }
+        System.out.println("deletado com sucesso");
+        addLn();
+    }
+
+    private void updateUser() {
+        this.optionChose("Atualizar usuario");
+        System.out.println("Digite o id do usuario: ");
+        int id = Integer.parseInt(this.scanner.nextLine());
+        try {
+            userService.update(createNewUser(id));
+        } catch (Exception e) {
+            System.out.println("erro ao atualizar");
+        }
+        addLn();
+    }
+
+    private void listUserById() {
+        this.optionChose("Listar usuario por Id");
+        System.out.println("Digite o id do usuario: ");
+        int id = Integer.parseInt(this.scanner.nextLine());
+        User user = null;
+        try {
+            user = userService.get(id);
+        } catch (NotFoundEntity e) {
+            System.out.println(e.getMessage());
+        }
+        if (user != null)
+            System.out.printf("usuario: %s Id: %d%n", user.getName(), user.getId());
+        addLn();
     }
 
     private void optionChose(String option) {
-        StringBuilder chosenOption = new StringBuilder("################################### ");
-        chosenOption.append(option);
-        chosenOption.append(" ###################################");
-        AddLn();
+        String chosenOption = "############################### " + option +
+                " ###############################";
+        addLn();
         System.out.println("#################################################################");
-        System.out.println(chosenOption.toString());
+        System.out.println(chosenOption);
         System.out.println("#################################################################");
-        AddLn();
+        addLn();
     }
 }
