@@ -60,10 +60,15 @@ public class User extends EntityBase {
         private String email;
         private String password;
         private Role role;
-
+        private Integer id;
 
         public Build name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Build id(Integer id) {
+            this.id = id;
             return this;
         }
 
