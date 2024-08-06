@@ -12,7 +12,8 @@ public class Apresentation {
     private static Apresentation instaceApresentationUnique;
     private UserService userService = UserService.getInstanceUserService();
    // private ProjectService projectService = ProjectService.getInstanceProjectService();
-    private Scanner scanner;
+   private Scanner scanner;
+   private String menu = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2- listar usuaios\n3 - Listar usuario por id\n4dfdfdfdd - deletar\n5 - modificar";
 
     public static Apresentation getinstaceApresentationUnique() {
         if (instaceApresentationUnique == null) {
@@ -25,7 +26,7 @@ public class Apresentation {
         this.scanner = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
-            System.out.println("Enter Opção \n0 - encerrar\n1 - adicionar\n2- listar usuaios\n3 - Listar usuario por id");
+            System.out.println();
             opcao = Integer.parseInt(this.scanner.nextLine());
             switch (opcao) {
                 case 0:
