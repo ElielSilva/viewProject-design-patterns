@@ -41,7 +41,7 @@ public abstract class  ServiceGeneric<T extends EntityBase> implements IService<
     public T get(int id) throws NotFoundEntity {
         if (!dao.isExist(id)) {
             this.logger.log("Entity not found", LoggerType.ERROR);
-            throw new NotFoundEntity("Usuario Não encontrado");
+            throw new NotFoundEntity("User Not Found");
         }
         return dao.getById(id);
     }
@@ -50,7 +50,7 @@ public abstract class  ServiceGeneric<T extends EntityBase> implements IService<
         T entity = dao.search(predicate);
         if (entity == null) {
             this.logger.log("Entity not found", LoggerType.ERROR);
-            throw new NotFoundEntity("Usuario Não encontrado");
+            throw new NotFoundEntity("User Not Found");
         }
         return entity;
     }

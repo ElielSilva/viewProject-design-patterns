@@ -28,7 +28,7 @@ public class ProjectService extends ServiceGeneric<Project> {
     @Override
     protected void valid(Project entity) throws DataContractValidate {
         if (!this.validate.IsValid(entity.getName())) {
-            throw new DataContractValidate("Nome ou descrição Invalido");
+            throw new DataContractValidate("Name or description Invalid");
         }
     }
 }

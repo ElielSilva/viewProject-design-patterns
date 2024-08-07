@@ -23,7 +23,7 @@ public class UserService extends ServiceGeneric<User> {
     @Override
     protected void valid(User entity) throws DataContractValidate {
         if (!this.validate.IsValid(entity.getName(), entity.getEmail(), entity.getPassword())) {
-            throw new DataContractValidate("Email ou senha Invalido");
+            throw new DataContractValidate("Email or Password Invalid");
         }
     }
 }

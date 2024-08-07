@@ -1,37 +1,59 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
-import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Logger.LoggerType;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 public class Facade<T> {
-    private IService<T> ServiceGeneric;
+    private UserService userService = UserService.getInstanceUserService();
+    private ProjectService projectService = ProjectService.getInstanceProjectService();
 
-    public void add(T entity) {
-        ServiceGeneric.add(entity);
+    public void addUser(User entity) {
+        userService.add(entity);
     }
 
-    public List<T> get() {
-        return ServiceGeneric.get();
+    public List<User> getUser() {
+        return userService.get();
     }
 
-    public T get(int id) throws NotFoundEntity {
-        return ServiceGeneric.get(id);
+    public User getUser(int id) throws NotFoundEntity {
+        return userService.get(id);
     }
 
-    public T search(Predicate<T> predicate) throws NotFoundEntity {
-
-        return ServiceGeneric.search(predicate);
+    public User searchUser(Predicate<User> predicate) throws NotFoundEntity {
+        return userService.search(predicate);
     }
 
-    public void update(T entity) throws DataContractValidate, NotFoundEntity {
-        ServiceGeneric.update(entity);
+    public void updateUser(User entity) throws DataContractValidate, NotFoundEntity {
+        userService.update(entity);
     }
 
-    public void delete(int id) throws NotFoundEntity {
-        ServiceGeneric.delete(id);
+    public void deleteUser(int id) throws NotFoundEntity {
+        userService.delete(id);
+    }
+
+    public List<Project> getProject() {
+        return projectService.get();
+    }
+
+    public Project getProject(int id) throws NotFoundEntity {
+        return projectService.get(id);
+    }
+
+    public Project searchProject(Predicate<Project> predicate) throws NotFoundEntity {
+
+        return projectService.search(predicate);
+    }
+
+    public void updateProject(Project entity) throws DataContractValidate, NotFoundEntity {
+        projectService.update(entity);
+    }
+
+    public void deleteProject(int id) throws NotFoundEntity {
+        projectService.delete(id);
     }
 }
