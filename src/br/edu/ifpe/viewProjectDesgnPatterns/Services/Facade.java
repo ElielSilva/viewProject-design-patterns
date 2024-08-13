@@ -8,7 +8,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Facade<T> {
+public class Facade {
     private UserService userService = UserService.getInstanceUserService();
     private ProjectService projectService = ProjectService.getInstanceProjectService();
 
@@ -34,6 +34,10 @@ public class Facade<T> {
 
     public void deleteUser(int id) throws NotFoundEntity {
         userService.delete(id);
+    }
+
+    public void addProject(Project entity) {
+        projectService.add(entity);
     }
 
     public List<Project> getProject() {

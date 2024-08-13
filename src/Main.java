@@ -1,4 +1,7 @@
-import br.edu.ifpe.viewProjectDesgnPatterns.Apresentation.Apresentation;
+import br.edu.ifpe.viewProjectDesgnPatterns.Apresentation.Presentation;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -38,9 +41,13 @@ public class Main {
 
         //   }
         ////}
+        UserService a = UserService.getInstanceUserService();
+        User TestElielAdmin = new User.Build().name("eliel").email("a@a.com").password("#Ee123").role(Role.ADMIN).build();
+        User TestJunioAdmin = new User.Build().name("junio").email("j@j.com").password("#Jj123").role(Role.ADMIN).build();
+        a.add(TestElielAdmin);
+        a.add(TestJunioAdmin);
 
-
-        Apresentation app = Apresentation.getinstaceApresentationUnique();
+        Presentation app = Presentation.getinstaceApresentationUnique();
         app.DesktopScreen();
     }
 }

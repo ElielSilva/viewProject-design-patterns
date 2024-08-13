@@ -1,0 +1,12 @@
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Error updating entityUser = {name='nomem', email='n@n.com', password='#Nn12', role=CLIENT} Email or Password Invalid
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Entity not found
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}

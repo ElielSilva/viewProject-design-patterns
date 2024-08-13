@@ -1,0 +1,10 @@
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}

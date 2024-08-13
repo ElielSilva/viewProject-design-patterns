@@ -4,6 +4,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class DAO<T extends EntityBase> implements IDAO<T> {
@@ -30,7 +31,17 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
     }
 
     @Override
-    public boolean add(T entity) {
+    public boolean add(T entity)  {
+        //Optional<Predicate<T>> ln = Optional.ofNullable(predicate);
+        //if(ln.isPresent()){
+        //    boolean entityExist = database
+        //            .stream()
+         //           .anyMatch(predicate);
+        //    if(entityExist){
+        //        throw new Exception();
+        //    };
+        //};
+
         int lengthInitialList = database.size();
         this.lastId = database.size() + 1;
         entity.setId(lastId);

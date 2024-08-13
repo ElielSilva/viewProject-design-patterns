@@ -7,6 +7,7 @@ public class User extends EntityBase {
     private Role role;
 
     public User(Build build) {
+        super(build.id == null ? -1 : build.id );
         this.name = build.name;
         this.email = build.email;
         this.password = build.password;

@@ -7,10 +7,6 @@ public class EntityBase {
         this.id = id;
     }
 
-    public EntityBase() {
-        this.id = -1;
-    }
-
     public int getId() {
         return id;
     }

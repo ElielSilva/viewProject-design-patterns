@@ -3,30 +3,22 @@ package br.edu.ifpe.viewProjectDesgnPatterns.Apresentation;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
-import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
+import br.edu.ifpe.viewProjectDesgnPatterns.Services.Facade;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class Apresentation {
-    private static Apresentation instaceApresentationUnique;
-    private UserService userService = UserService.getInstanceUserService();
-   // private ProjectService projectService = ProjectService.getInstanceProjectService();
-   private Scanner scanner;
-   private String menu = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2- listar usuaios\n3 - Listar usuario por id\n4dfdfdfdd - deletar\n5 - modificar";
+public class MenuUser {
+    public Facade facade = new Facade();
+    private static final String MENU = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2- listar usuaios\n3 - Listar usuario por id\n4 - deletar\n5 - modificar";
+    private Scanner scanner;
 
-    public static Apresentation getinstaceApresentationUnique() {
-        if (instaceApresentationUnique == null) {
-            instaceApresentationUnique = new Apresentation();
-        }
-        return instaceApresentationUnique;
-    }
-
-    public void DesktopScreen () {
+    public void showMenuUser () {
         this.scanner = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
-            System.out.println();
+            System.out.println(MENU);
             opcao = Integer.parseInt(this.scanner.nextLine());
             switch (opcao) {
                 case 0:
@@ -54,24 +46,22 @@ public class Apresentation {
         }
     }
 
-    private User createNewUser(Integer id ) {
-        Optional<Integer> ln = Optional.ofNullable(id);
-        System.out.println("Digite o nome do usuario: ");
-        String name = this.scanner.nextLine();
-        System.out.println("Digite o Email: ");
-        String email = this.scanner.nextLine();
-        System.out.println("Digite o Password: ");
-        String password = this.scanner.nextLine();
-        if (ln.isPresent()) {
-            return new User.Build().id(id).name(name).email(email).password(password).role(Role.CLIENT).build();
-        }
-        return new User.Build().name(name).email(email).password(password).role(Role.CLIENT).build();
+    private String getInput(String prompt) {
+        System.out.println(prompt);
+        return this.scanner.nextLine();
+    }
+
+    private User.Build createNewUser() {
+        String name = getInput("Digite o nome do usuario: ");
+        String email = getInput("Digite o Email: ");
+        String password = getInput("Digite o Password: ");
+        return new User.Build().name(name).email(email).password(password).role(Role.CLIENT);
     }
 
     private void addUser() {
         this.optionChose("Adicionar user");
         try {
-            userService.add(createNewUser(null));
+            facade.addUser(createNewUser().build());
         } catch (Exception e) {
             System.out.println("erro ao adicionar");
         }
@@ -87,7 +77,7 @@ public class Apresentation {
 
     private void listUser() {
         this.optionChose("Listar todos os usuarios");
-        List<User> allUser = userService.get();
+        List<User> allUser = facade.getUser();
         if (allUser.isEmpty()) {
             System.out.println("não há usuarios");
         }
@@ -102,7 +92,7 @@ public class Apresentation {
         System.out.println("Digite o id do usuario: ");
         int id = Integer.parseInt(this.scanner.nextLine());
         try {
-            userService.delete(id);
+            facade.deleteUser(id);
         } catch (NotFoundEntity e) {
             System.out.println("erro ao deletar usuario");
         }
@@ -115,7 +105,7 @@ public class Apresentation {
         System.out.println("Digite o id do usuario: ");
         int id = Integer.parseInt(this.scanner.nextLine());
         try {
-            userService.update(createNewUser(id));
+            facade.updateUser(createNewUser().id(id).build());
         } catch (Exception e) {
             System.out.println("erro ao atualizar");
         }
@@ -128,7 +118,7 @@ public class Apresentation {
         int id = Integer.parseInt(this.scanner.nextLine());
         User user = null;
         try {
-            user = userService.get(id);
+            user = facade.getUser(id);
         } catch (NotFoundEntity e) {
             System.out.println(e.getMessage());
         }
