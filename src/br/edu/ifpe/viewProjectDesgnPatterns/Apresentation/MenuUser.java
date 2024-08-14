@@ -1,28 +1,25 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Apresentation;
 
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.Facade;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsBuilds;
+import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsIO;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
 public class MenuUser {
     public Facade facade = new Facade();
-    private static final String MENU = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2- listar usuaios\n3 - Listar usuario por id\n4 - deletar\n5 - modificar";
-    private Scanner scanner;
+    private static final String MENU = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2 - listar usuaios\n3 - Listar usuario por id\n4 - deletar\n5 - modificar";
 
     public void showMenuUser () {
-        this.scanner = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
-            System.out.println(MENU);
-            opcao = Integer.parseInt(this.scanner.nextLine());
+            System.out.println(MENU.toUpperCase());
+            opcao = Integer.parseInt(ExtensionsIO.getInput("DIGITE A OPÇÃO DESEJADA: "));
             switch (opcao) {
                 case 0:
-                    this.optionChose("Encerrar");
+                    ExtensionsIO.optionChose("ENCERRAR");
                     break;
                 case 1:
                     this.addUser();
@@ -40,28 +37,16 @@ public class MenuUser {
                     this.updateUser();
                     break;
                 default:
-                    System.out.println("opção invalida");
+                    System.out.println("OPÇÃO INVALIDA");
                     break;
             }
         }
     }
 
-    private String getInput(String prompt) {
-        System.out.println(prompt);
-        return this.scanner.nextLine();
-    }
-
-    private User.Build createNewUser() {
-        String name = getInput("Digite o nome do usuario: ");
-        String email = getInput("Digite o Email: ");
-        String password = getInput("Digite o Password: ");
-        return new User.Build().name(name).email(email).password(password).role(Role.CLIENT);
-    }
-
     private void addUser() {
-        this.optionChose("Adicionar user");
+        ExtensionsIO.optionChose("Adicionar user");
         try {
-            facade.addUser(createNewUser().build());
+            facade.addUser(ExtensionsBuilds.createNewUser().build());
         } catch (Exception e) {
             System.out.println("erro ao adicionar");
         }
@@ -76,7 +61,7 @@ public class MenuUser {
     }
 
     private void listUser() {
-        this.optionChose("Listar todos os usuarios");
+        ExtensionsIO.optionChose("Listar todos os usuarios");
         List<User> allUser = facade.getUser();
         if (allUser.isEmpty()) {
             System.out.println("não há usuarios");
@@ -88,9 +73,8 @@ public class MenuUser {
     }
 
     private void deleteUser() {
-        this.optionChose("Deletar usuario");
-        System.out.println("Digite o id do usuario: ");
-        int id = Integer.parseInt(this.scanner.nextLine());
+        ExtensionsIO.optionChose("Deletar usuario");
+        int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do usuario: "));
         try {
             facade.deleteUser(id);
         } catch (NotFoundEntity e) {
@@ -101,21 +85,19 @@ public class MenuUser {
     }
 
     private void updateUser() {
-        this.optionChose("Atualizar usuario");
-        System.out.println("Digite o id do usuario: ");
-        int id = Integer.parseInt(this.scanner.nextLine());
+        ExtensionsIO.optionChose("Atualizar usuario");
+        int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do usuario: "));
         try {
-            facade.updateUser(createNewUser().id(id).build());
+            facade.updateUser(ExtensionsBuilds.createNewUser().id(id).build());
         } catch (Exception e) {
-            System.out.println("erro ao atualizar");
+            System.out.println("ERRO AO ATUALIZAR USUARIO");
         }
         addLn();
     }
 
     private void listUserById() {
-        this.optionChose("Listar usuario por Id");
-        System.out.println("Digite o id do usuario: ");
-        int id = Integer.parseInt(this.scanner.nextLine());
+        ExtensionsIO.optionChose("Listar usuario por Id");
+        int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do usuario: "));
         User user = null;
         try {
             user = facade.getUser(id);
@@ -124,16 +106,6 @@ public class MenuUser {
         }
         if (user != null)
             System.out.printf("usuario: %s Id: %d%n", user.getName(), user.getId());
-        addLn();
-    }
-
-    private void optionChose(String option) {
-        String chosenOption = "############################### " + option +
-                " ###############################";
-        addLn();
-        System.out.println("#################################################################");
-        System.out.println(chosenOption);
-        System.out.println("#################################################################");
         addLn();
     }
 }
