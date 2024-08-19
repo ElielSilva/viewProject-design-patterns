@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Facade {
-    private UserService userService = UserService.getInstanceUserService();
-    private ProjectService projectService = ProjectService.getInstanceProjectService();
+    private final UserService userService = UserService.getInstanceUserService();
+    private final ProjectService projectService = ProjectService.getInstanceProjectService();
 
     public void addUser(User entity) {
         userService.add(entity);
     }
 
-    public List<User> getUser() {
+    public List<User> getUser() throws NotFoundEntity {
         return userService.get();
     }
 
@@ -40,7 +40,7 @@ public class Facade {
         projectService.add(entity);
     }
 
-    public List<Project> getProject() {
+    public List<Project> getProject() throws NotFoundEntity {
         return projectService.get();
     }
 

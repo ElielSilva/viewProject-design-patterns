@@ -1,6 +1,8 @@
 import br.edu.ifpe.viewProjectDesgnPatterns.Apresentation.Presentation;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Services.ProjectService;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.UserService;
 
 public class Main {

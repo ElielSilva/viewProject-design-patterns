@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 public interface IService<T> {
     void add(T entity);
-    List<T> get();
+    List<T> get() throws NotFoundEntity;
     T get(int id) throws NotFoundEntity;
     T search(Predicate<T> predicate) throws NotFoundEntity;
     void update(T entity) throws NotFoundEntity, DataContractValidate;

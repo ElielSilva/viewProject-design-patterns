@@ -1,14 +1,12 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Apresentation;
 
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.*;
+import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.Unauthorized;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.Facade;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsBuilds;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsIO;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +21,7 @@ public class MenuProject {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println(MENU.toUpperCase());
-            opcao = Integer.parseInt(ExtensionsIO.getInput("Digite a opção desejada"));
+            opcao = Integer.parseInt(ExtensionsIO.getInput("Digite a opção desejada: "));
             switch (opcao) {
                 case 0:
                     ExtensionsIO.optionChose("ENCERRAR");
@@ -43,6 +41,9 @@ public class MenuProject {
                 case 5:
                     this.updateProject();
                     break;
+                case 6:
+                    this.decorateProject();
+                    break;
                 default:
                     System.out.println("OPÇÃO INVALIDA");
                     break;
@@ -50,6 +51,42 @@ public class MenuProject {
         }
     }
 
+    private void decorateProject() {
+        // como posso decorar um projeto e depois salvar no dao?
+        ExtensionsIO.optionChose("decorar Projetos");
+        int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do Project: "));
+        int opt = Integer.parseInt(ExtensionsIO.getInput("COMO DESEJA DECORAR ESSE PROJETO:\n\n1 - FrontEnd\n2 - BackEnd\n3 - FullStack\n4 - Mobile"));
+        try {
+            IProjects project = facade.getProject(id);
+            switch (opt){
+                case 1:
+                    project = new FrontendDecorator(project);
+                    break;
+                case 2:
+                    project = new BackendDecoretor(project);
+                    break;
+                case 3:
+                    project = new FullStackDecorator(project);
+                    break;
+                case 4:
+                    project = new MobileDecorator(project);
+                    break;
+                default:
+                    System.out.println("OPÇÃO INVALIDA");
+                    break;
+            }
+
+            System.out.println(project);
+            Project n = (Project) ((FrontendDecorator) project).project;
+
+            facade.updateProject(n);
+
+        } catch (NotFoundEntity e) {
+            System.out.println("Projeto não existe.");
+        } catch (DataContractValidate e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private void addProject() {
         ExtensionsIO.optionChose("Adicionar Projeto");
@@ -62,17 +99,19 @@ public class MenuProject {
         ExtensionsIO.addLn();
     }
 
-
-    private void listProject() {
+    private void listProject()  {
         ExtensionsIO.optionChose("Listar todos os Projetos");
-        List<Project> allProject = facade.getProject();
-        if (allProject.isEmpty()) {
-            System.out.println("não há Projetos");
+        List<Project> allProject = null;
+        try {
+            allProject = facade.getProject();
+            if (allProject.isEmpty()) {
+                System.out.println("não há Projetos");
+            }
+            allProject.forEach(System.out::println);
+            ExtensionsIO.addLn();
+        } catch (NotFoundEntity e) {
+            System.out.println("Ainda não existe registros de projetos inseridos na base");
         }
-        for (Project project : allProject) {
-            System.out.println("Projeto: "+ project.getName() + " Id: " + project.getId());
-        }
-        ExtensionsIO.addLn();
     }
 
     private void deleteProject() {
@@ -82,7 +121,6 @@ public class MenuProject {
         try {
             if(actualUser.getRole() == Role.ADMIN) {
                 facade.deleteProject(id);
-
             }
             else {
                 Project project = facade.getProject(id);
@@ -91,11 +129,11 @@ public class MenuProject {
                 }
                 facade.deleteProject(id);
             }
+            System.out.println("deletado com sucesso");
+            ExtensionsIO.addLn();
         } catch (NotFoundEntity | Unauthorized e) {
             System.out.println("erro ao deletar Projeto");
         }
-        System.out.println("deletado com sucesso");
-        ExtensionsIO.addLn();
     }
 
     private void updateProject() {
@@ -127,11 +165,10 @@ public class MenuProject {
         Project project = null;
         try {
             project = facade.getProject(actualUser.getId());
+            System.out.println(project);
         } catch (NotFoundEntity e) {
             System.out.println(e.getMessage());
         }
-        if (project != null)
-            System.out.printf("Projeto: %s Id: %d%n", project.getName(), project.getId());
         ExtensionsIO.addLn();
     }
 }

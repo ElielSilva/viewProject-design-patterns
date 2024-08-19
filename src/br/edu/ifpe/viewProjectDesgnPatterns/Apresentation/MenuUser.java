@@ -51,8 +51,7 @@ public class MenuUser {
             System.out.println("erro ao adicionar");
         }
         System.out.println("adicionado com sucesso");
-        addLn();
-
+        ExtensionsIO.addLn();
     }
 
     private void addLn() {
@@ -62,14 +61,19 @@ public class MenuUser {
 
     private void listUser() {
         ExtensionsIO.optionChose("Listar todos os usuarios");
-        List<User> allUser = facade.getUser();
-        if (allUser.isEmpty()) {
-            System.out.println("não há usuarios");
+        List<User> allUser = null;
+        try {
+            allUser = facade.getUser();
+            if (allUser.isEmpty()) {
+                System.out.println("não há usuarios");
+            }
+            for (User user : allUser) {
+                System.out.println("usuario: "+ user.getName() + " Id: " + user.getId());
+            }
+            addLn();
+        } catch (NotFoundEntity e) {
+            System.out.println("Ainda não existe dados inseridos na base");
         }
-        for (User user : allUser) {
-            System.out.println("usuario: "+ user.getName() + " Id: " + user.getId());
-        }
-        addLn();
     }
 
     private void deleteUser() {

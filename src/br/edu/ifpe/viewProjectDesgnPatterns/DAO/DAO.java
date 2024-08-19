@@ -23,9 +23,9 @@ public class DAO<T extends EntityBase> implements IDAO<T> {
     }
 
     @Override
-    public List<T> getAll() {
+    public List<T> getAll() throws NotFoundEntity {
         if (database.isEmpty()) {
-            throw new RuntimeException("database is empty");
+            throw new NotFoundEntity();
         }
         return database;
     }

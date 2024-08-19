@@ -1,15 +1,15 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class FrontendDecorator implements IProjects {
-    private final double VALUE = 2000.0;
-    private IProjects project;
+public class FrontendDecorator extends ProjectDecorator {
+    public IProjects project;
 
     public FrontendDecorator(IProjects project) {
-        this.project = project;
+        super(project);
     }
 
     @Override
     public double getValue() {
-        return this.project.getValue() + VALUE;
+        double VALUE = 2000.0;
+        return super.getValue() + VALUE;
     }
 }

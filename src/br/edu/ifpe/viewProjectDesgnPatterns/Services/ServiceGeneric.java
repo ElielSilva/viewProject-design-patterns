@@ -11,7 +11,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Logger.LoggerType;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class  ServiceGeneric<T extends EntityBase> implements IService<T> {
+public abstract class ServiceGeneric<T extends EntityBase> implements IService<T> {
 
     private final IDAO<T> dao;
     private final ILogger logger;
@@ -34,7 +34,7 @@ public abstract class  ServiceGeneric<T extends EntityBase> implements IService<
 
     }
 
-    public List<T> get() {
+    public List<T> get() throws NotFoundEntity {
         return dao.getAll();
     }
 

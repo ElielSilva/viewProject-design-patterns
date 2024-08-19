@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public interface IDAO<T> {
     T getById (int id);
-    List<T> getAll ();
+    List<T> getAll () throws NotFoundEntity;
     boolean add(T entity);
     void delete(int id) throws NotFoundEntity;
     T update(T entity) throws NotFoundEntity;

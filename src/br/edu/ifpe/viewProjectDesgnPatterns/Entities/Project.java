@@ -13,20 +13,18 @@ public class Project extends EntityBase implements IProjects {
     private Integer userId;
 
     public Project(Build build) {
-        super(build.id);
+        super(build.id == null ? -1 : build.id);
         this.name = build.name;
         this.description = build.description;
         this.status = build.status;
         this.startDate = build.startDate;
         this.endDate = build.endDate;
         this.userId = build.userId;
-        this.id = build.id;
     }
 
     @Override
     public String toString() {
         return "Project = {" +
-                "VALUE=" + VALUE +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
