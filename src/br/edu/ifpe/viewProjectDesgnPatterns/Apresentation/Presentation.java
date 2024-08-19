@@ -6,7 +6,7 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsIO;
 public class Presentation {
     private static Presentation instaceApresentationUnique;
     private User actualUser;
-    private static final String MENU_MAIN = "Enter Opção \n" + "0 - encerrar\n1 - editar usuarios\n2 - editar projetos";
+    private static final String MENU_MAIN = "Enter Opção \n" + "0 - encerrar\n1 - editar usuarios\n2 - editar projetos\n3 - Voltar para o login";
 
     public static Presentation getinstaceApresentationUnique() {
         if (instaceApresentationUnique == null) {
@@ -27,10 +27,16 @@ public class Presentation {
                     ExtensionsIO.optionChose("Encerrar".toUpperCase());
                     break;
                 case 1:
+                    ExtensionsIO.addLn();
                     this.redirectMenuUser();
                     break;
                 case 2:
+                    ExtensionsIO.addLn();
                     this.redirectMenuProject();
+                    break;
+                case 3:
+                    ExtensionsIO.addLn();
+                    this.redirectMenuLogin();
                     break;
                 default:
                     System.out.println("opção invalida".toUpperCase());

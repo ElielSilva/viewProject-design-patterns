@@ -14,4 +14,11 @@ public class EntityBase {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "EntityBase{" +
+                "id=" + id +
+                '}';
+    }
 }

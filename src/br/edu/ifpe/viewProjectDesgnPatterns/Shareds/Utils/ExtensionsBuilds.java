@@ -1,8 +1,9 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils;
 
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Role;
-import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.*;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class ExtensionsBuilds {
@@ -21,9 +22,19 @@ public class ExtensionsBuilds {
     }
 
     public static Project.Build createNewProject() {
+        var REGEX_DECORATOR = Pattern.compile("BACKEND|FRONTEND|DATABASE", Pattern.CASE_INSENSITIVE);
         String name = ExtensionsIO.getInput("Digite o nome do projeto: ");
-        String description = ExtensionsIO.getInput("Digite o nome do projeto: ");
+        String description = ExtensionsIO.getInput("Digite a descrição do projeto: ");
+        Status status = Status.INITIAL;
+        ArrayList<ProjectTypes> projectTypes = new ArrayList<>();
+        String s = ExtensionsIO.getInput("Digite o tipo/tipos de projeto com virgula\nex: Backend, FrontEnd");
+        for (String x : s.split(",")) {
+            Boolean isRx = REGEX_DECORATOR.matcher(x.trim()).matches();
+            if(isRx) {
+                projectTypes.add(ProjectTypes.valueOf(x.trim().toUpperCase()));
+            }
+        }
 
-        return new Project.Build().name(name).description(description);
+        return new Project.Build().name(name).description(description).Status(status).projectTypes(projectTypes);
     }
 }

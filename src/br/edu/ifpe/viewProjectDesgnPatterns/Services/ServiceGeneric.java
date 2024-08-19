@@ -31,7 +31,6 @@ public abstract class ServiceGeneric<T extends EntityBase> implements IService<T
             String message = "Error adding entity" + entity.toString() + " " + e.getMessage();
             this.logger.log(message, LoggerType.ERROR);
         }
-
     }
 
     public List<T> get() throws NotFoundEntity {

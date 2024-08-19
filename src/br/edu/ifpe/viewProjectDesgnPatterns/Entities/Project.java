@@ -15,21 +15,21 @@ public class Project extends EntityBase implements IDecorator {
     private Integer userId;
 
     public Project(Build build) {
-        super(build.id == null ? -1 : build.id );
+        super(build.id == null ? -1 : build.id);
         this.name = build.name;
         this.description = build.description;
-        this.projectTypes = (build.projectTypes == null ? new ArrayList<ProjectTypes> (): build.projectTypes);
-        this.status = (build.status == null ? Status.INITIAL : build.status );
+        this.projectTypes = (build.projectTypes == null ? new ArrayList<ProjectTypes>() : build.projectTypes);
+        this.status = (build.status == null ? Status.INITIAL : build.status);
         this.startDate = (build.startDate == null ? LocalDate.now() : build.startDate);
         this.endDate = build.endDate;
         this.userId = build.userId;
-        this.id = build.id;
     }
 
     @Override
     public String toString() {
         return "Project = {" +
-                "VALUE=" + VALUE +
+                "id= " + super.id +
+                ", VALUE=" + VALUE +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
