@@ -6,3 +6,57 @@ Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMI
 Adding entityUser = {name='TESTE', email='t@t.com', password='#Tt123', role=CLIENT}
 Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
 Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=0.0, name='aaaaaa', description='aaaaaaaa', status='null', startDate=null, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=0.0, name='aaaaaa', description='aaaaaaaa', status='null', startDate=null, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=0.0, name='aaaaaa', description='aaaaaaaa', status='null', startDate=null, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityProject = {VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}
+Adding entityProject = {VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-19, endDate=null, userId=3}

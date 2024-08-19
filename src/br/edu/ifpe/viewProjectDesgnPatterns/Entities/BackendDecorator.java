@@ -1,9 +1,9 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class FrontendDecorator extends Decorator {
-    private final double VALUE = 2000.0;
+public class BackendDecorator extends Decorator{
+    private final double VALUE = 3000.0;
 
-    public FrontendDecorator(IDecorator project) {
+    public BackendDecorator(IDecorator project) {
         super(project);
     }
 
@@ -14,7 +14,7 @@ public class FrontendDecorator extends Decorator {
 
     @Override
     public String toString() {
-        return "FrontendDecorator{" +
+        return "BackendDecoretor{" +
                 "VALUE=" + this.getValue() +
                 ", project=" + project +
                 '}';

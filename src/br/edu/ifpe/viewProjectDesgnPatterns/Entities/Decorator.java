@@ -1,9 +1,9 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
 public abstract class Decorator implements IDecorator{
-    public Project project;
+    public IDecorator project;
 
-    public Decorator(Project project) {
+    public Decorator(IDecorator project) {
         this.project = project;
     }
 

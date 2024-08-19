@@ -1,13 +1,14 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Project extends EntityBase implements IDecorator {
-    private final Double VALUE = 0.0;
+    private final Double VALUE = 1000.0;
 
     private String name;
     private String description;
-    private ProjectTypes[] projectTypes;
+    private ArrayList<ProjectTypes> projectTypes;
     private Status status; // criar enum
     private LocalDate startDate;
     private LocalDate endDate;
@@ -17,8 +18,9 @@ public class Project extends EntityBase implements IDecorator {
         super(build.id == null ? -1 : build.id );
         this.name = build.name;
         this.description = build.description;
-        this.status = build.status;
-        this.startDate = build.startDate;
+        this.projectTypes = (build.projectTypes == null ? new ArrayList<ProjectTypes> (): build.projectTypes);
+        this.status = (build.status == null ? Status.INITIAL : build.status );
+        this.startDate = (build.startDate == null ? LocalDate.now() : build.startDate);
         this.endDate = build.endDate;
         this.userId = build.userId;
         this.id = build.id;
@@ -53,11 +55,11 @@ public class Project extends EntityBase implements IDecorator {
         this.description = description;
     }
 
-    public ProjectTypes[] getProjectTypes() {
+    public ArrayList<ProjectTypes> getProjectTypes() {
         return projectTypes;
     }
 
-    public void setProjectTypes(ProjectTypes[] projectTypes) {
+    public void setProjectTypes(ArrayList<ProjectTypes> projectTypes) {
         this.projectTypes = projectTypes;
     }
 
@@ -102,7 +104,7 @@ public class Project extends EntityBase implements IDecorator {
         private Integer id;
         private String name;
         private String description;
-        private ProjectTypes[] projectTypes;
+        private ArrayList<ProjectTypes> projectTypes;
         private Status status;
         private LocalDate startDate;
         private LocalDate endDate;
@@ -123,7 +125,7 @@ public class Project extends EntityBase implements IDecorator {
             return this;
         }
 
-        public Build projectTypes(ProjectTypes[] projectTypes) {
+        public Build projectTypes(ArrayList<ProjectTypes> projectTypes) {
             this.projectTypes = projectTypes;
             return this;
         }

@@ -1,16 +1,15 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Apresentation;
 
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.*;
-import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.Unauthorized;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.Facade;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsBuilds;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsIO;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MenuProject {
     public Facade facade = new Facade();
@@ -109,23 +108,25 @@ public class MenuProject {
             if (allProject.isEmpty()) {
                 System.out.println("não há Projetos");
             }
+
             allProject.forEach(
                     p -> {
-                        if (p.getProjectTypes().length != 0) {
-                            Arrays.stream(p.getProjectTypes()).forEach(
+                        AtomicReference<IDecorator> copyP = new AtomicReference<>(p);
+                        if (!p.getProjectTypes().isEmpty()) {
+
+                            p.getProjectTypes().forEach(
                                     t -> {
                                         if (t.equals(ProjectTypes.FRONTEND)) {
-                                            new FrontendDecorator(p);
+                                            copyP.set(new FrontendDecorator(copyP.get()));
                                         } else if (t.equals(ProjectTypes.BACKEND)) {
-                                            new FrontendDecorator(p);
+                                            copyP.set(new BackendDecorator(copyP.get()));
                                         } else if (t.equals(ProjectTypes.DATABASE)) {
-                                            new FrontendDecorator(p);
+                                            copyP.set(new DatabaseDecorator(copyP.get()));
                                         }
-
                                     }
 
                             );
-                            System.out.println(p);
+                            System.out.println(copyP);
                         }
                         else {
                             System.out.println(p);
