@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MenuUser {
     public Facade facade = new Facade();
-    private static final String MENU = "Enter Opção \n" + "0 - encerrar\n1 - adicionar\n2 - listar usuaios\n3 - Listar usuario por id\n4 - deletar\n5 - modificar";
+    private static final String MENU = "Enter Opção \n" + "0 - voltar\n1 - adicionar\n2 - listar usuaios\n3 - Listar usuario por id\n4 - deletar\n5 - modificar";
 
     public void showMenuUser () {
         int opcao = -1;

@@ -13,8 +13,10 @@ public class Main {
         UserService a = UserService.getInstanceUserService();
         User testElielAdmin = new User.Build().name("eliel").email("a@a.com").password("#Ee123").role(Role.ADMIN).build();
         User testJunioAdmin = new User.Build().name("junio").email("j@j.com").password("#Jj123").role(Role.ADMIN).build();
+        User testclient = new User.Build().name("client").email("q@q.com").password("#Cc123").role(Role.CLIENT).build();
         a.add(testElielAdmin);
         a.add(testJunioAdmin);
+        a.add(testclient);
 
         ArrayList arr = new ArrayList<>();
         arr.add(ProjectTypes.FRONTEND);

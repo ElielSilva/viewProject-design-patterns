@@ -141,8 +141,7 @@ public class MenuProject {
 
     private void deleteProject() {
         ExtensionsIO.optionChose("Deletar Projeto");
-        System.out.println("Digite o id do Projeto: ");
-        int id = Integer.parseInt(this.scanner.nextLine());
+        int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do projeto"));
         try {
             if(actualUser.getRole() == Role.ADMIN) {
                 facade.deleteProject(id);
