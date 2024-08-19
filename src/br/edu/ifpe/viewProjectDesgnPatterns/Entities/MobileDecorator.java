@@ -1,15 +1,14 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class MobileDecorator implements IProjects{
+public class MobileDecorator extends Decorator{
     private final double VALUE = 2500.0;
-    private final IProjects project;
 
-    public MobileDecorator(IProjects project) {
-        this.project = project;
+    public MobileDecorator(Project project) {
+        super(project);
     }
 
     @Override
     public double getValue() {
-        return project.getValue() + VALUE;
+        return super.project.getValue() + VALUE;
     }
 }

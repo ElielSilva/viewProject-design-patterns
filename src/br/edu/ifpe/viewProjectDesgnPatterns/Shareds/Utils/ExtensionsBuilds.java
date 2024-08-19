@@ -22,6 +22,8 @@ public class ExtensionsBuilds {
 
     public static Project.Build createNewProject() {
         String name = ExtensionsIO.getInput("Digite o nome do projeto: ");
-        return new Project.Build().name(name);
+        String description = ExtensionsIO.getInput("Digite o nome do projeto: ");
+
+        return new Project.Build().name(name).description(description);
     }
 }

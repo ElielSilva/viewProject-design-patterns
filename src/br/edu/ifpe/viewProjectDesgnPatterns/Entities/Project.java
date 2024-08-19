@@ -2,29 +2,32 @@ package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
 import java.time.LocalDate;
 
-public class Project extends EntityBase implements IProjects {
+public class Project extends EntityBase implements IDecorator {
     private final Double VALUE = 0.0;
 
     private String name;
     private String description;
-    private String status; // criar enum
+    private ProjectTypes[] projectTypes;
+    private Status status; // criar enum
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer userId;
 
     public Project(Build build) {
-        super(build.id == null ? -1 : build.id);
+        super(build.id == null ? -1 : build.id );
         this.name = build.name;
         this.description = build.description;
         this.status = build.status;
         this.startDate = build.startDate;
         this.endDate = build.endDate;
         this.userId = build.userId;
+        this.id = build.id;
     }
 
     @Override
     public String toString() {
         return "Project = {" +
+                "VALUE=" + VALUE +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
@@ -50,11 +53,19 @@ public class Project extends EntityBase implements IProjects {
         this.description = description;
     }
 
-    public String getStatus() {
+    public ProjectTypes[] getProjectTypes() {
+        return projectTypes;
+    }
+
+    public void setProjectTypes(ProjectTypes[] projectTypes) {
+        this.projectTypes = projectTypes;
+    }
+
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -91,7 +102,8 @@ public class Project extends EntityBase implements IProjects {
         private Integer id;
         private String name;
         private String description;
-        private String status;
+        private ProjectTypes[] projectTypes;
+        private Status status;
         private LocalDate startDate;
         private LocalDate endDate;
         private Integer userId;
@@ -111,7 +123,12 @@ public class Project extends EntityBase implements IProjects {
             return this;
         }
 
-        public Build Status(String status) {
+        public Build projectTypes(ProjectTypes[] projectTypes) {
+            this.projectTypes = projectTypes;
+            return this;
+        }
+
+        public Build Status(Status status) {
             this.status = status;
             return this;
         }

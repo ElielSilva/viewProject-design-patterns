@@ -1,5 +1,6 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 
+import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Decorator;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.User;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;

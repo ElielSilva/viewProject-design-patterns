@@ -7,6 +7,8 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Exception.Unauthorized;
 import br.edu.ifpe.viewProjectDesgnPatterns.Services.Facade;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsBuilds;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Utils.ExtensionsIO;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,9 +43,9 @@ public class MenuProject {
                 case 5:
                     this.updateProject();
                     break;
-                case 6:
+                /*case 6:
                     this.decorateProject();
-                    break;
+                    break;*/
                 default:
                     System.out.println("OPÇÃO INVALIDA");
                     break;
@@ -51,25 +53,25 @@ public class MenuProject {
         }
     }
 
-    private void decorateProject() {
+   /* private void decorateProject() {
         // como posso decorar um projeto e depois salvar no dao?
         ExtensionsIO.optionChose("decorar Projetos");
         int id = Integer.parseInt(ExtensionsIO.getInput("Digite o id do Project: "));
         int opt = Integer.parseInt(ExtensionsIO.getInput("COMO DESEJA DECORAR ESSE PROJETO:\n\n1 - FrontEnd\n2 - BackEnd\n3 - FullStack\n4 - Mobile"));
         try {
-            IProjects project = facade.getProject(id);
+            Project project = facade.getProject(id);
             switch (opt){
                 case 1:
-                    project = new FrontendDecorator(project);
+                    //project = new FrontendDecorator(project);
                     break;
                 case 2:
-                    project = new BackendDecoretor(project);
+                    //project = new BackendDecoretor(project);
                     break;
                 case 3:
-                    project = new FullStackDecorator(project);
+                    //project = new FullStackDecorator(project);
                     break;
                 case 4:
-                    project = new MobileDecorator(project);
+                    //project = new MobileDecorator(project);
                     break;
                 default:
                     System.out.println("OPÇÃO INVALIDA");
@@ -77,16 +79,16 @@ public class MenuProject {
             }
 
             System.out.println(project);
-            Project n = (Project) ((FrontendDecorator) project).project;
+            //Project n = (Project) ((FrontendDecorator) project).project;
 
-            facade.updateProject(n);
+            //facade.updateProject(n);
 
         } catch (NotFoundEntity e) {
             System.out.println("Projeto não existe.");
         } catch (DataContractValidate e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     private void addProject() {
         ExtensionsIO.optionChose("Adicionar Projeto");
@@ -99,7 +101,7 @@ public class MenuProject {
         ExtensionsIO.addLn();
     }
 
-    private void listProject()  {
+    private void listProject() {
         ExtensionsIO.optionChose("Listar todos os Projetos");
         List<Project> allProject = null;
         try {
@@ -107,7 +109,29 @@ public class MenuProject {
             if (allProject.isEmpty()) {
                 System.out.println("não há Projetos");
             }
-            allProject.forEach(System.out::println);
+            allProject.forEach(
+                    p -> {
+                        if (p.getProjectTypes().length != 0) {
+                            Arrays.stream(p.getProjectTypes()).forEach(
+                                    t -> {
+                                        if (t.equals(ProjectTypes.FRONTEND)) {
+                                            new FrontendDecorator(p);
+                                        } else if (t.equals(ProjectTypes.BACKEND)) {
+                                            new FrontendDecorator(p);
+                                        } else if (t.equals(ProjectTypes.DATABASE)) {
+                                            new FrontendDecorator(p);
+                                        }
+
+                                    }
+
+                            );
+                            System.out.println(p);
+                        }
+                        else {
+                            System.out.println(p);
+                        }
+                    }
+            );
             ExtensionsIO.addLn();
         } catch (NotFoundEntity e) {
             System.out.println("Ainda não existe registros de projetos inseridos na base");

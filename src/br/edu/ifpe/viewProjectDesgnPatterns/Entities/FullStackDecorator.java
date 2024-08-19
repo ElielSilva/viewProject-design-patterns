@@ -1,14 +1,15 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 
-public class FullStackDecorator extends ProjectDecorator {
+public class FullStackDecorator implements IDecorator{
+    private final double VALUE = 5000.0;
+    private final IDecorator project;
 
-    public FullStackDecorator(IProjects project) {
-        super(project);
+    public FullStackDecorator(IDecorator project) {
+        this.project = project;
     }
 
     @Override
     public double getValue() {
-        double VALUE = 5000.0;
-        return super.getValue() + VALUE;
+        return project.getValue() + VALUE;
     }
 }
