@@ -4,7 +4,6 @@ import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 public class DAO<T extends EntityBase> implements IDAO<T> {

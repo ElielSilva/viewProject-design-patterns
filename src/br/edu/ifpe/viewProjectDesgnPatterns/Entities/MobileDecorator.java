@@ -3,7 +3,7 @@ package br.edu.ifpe.viewProjectDesgnPatterns.Entities;
 public class MobileDecorator extends Decorator{
     private final double VALUE = 2500.0;
 
-    public MobileDecorator(Project project) {
+    public MobileDecorator(IDecorator project) {
         super(project);
     }
 

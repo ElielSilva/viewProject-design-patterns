@@ -22,12 +22,12 @@ public class ExtensionsBuilds {
     }
 
     public static Project.Build createNewProject() {
-        var REGEX_DECORATOR = Pattern.compile("BACKEND|FRONTEND|DATABASE", Pattern.CASE_INSENSITIVE);
+        var REGEX_DECORATOR = Pattern.compile("BACKEND|FRONTEND|DATABASE|MOBILE", Pattern.CASE_INSENSITIVE);
         String name = ExtensionsIO.getInput("Digite o nome do projeto: ");
         String description = ExtensionsIO.getInput("Digite a descrição do projeto: ");
         Status status = Status.INITIAL;
         ArrayList<ProjectTypes> projectTypes = new ArrayList<>();
-        String s = ExtensionsIO.getInput("Digite o tipo/tipos de projeto com virgula\nex: Backend, FrontEnd");
+        String s = ExtensionsIO.getInput("Digite o tipo ou tipos de projeto com virgula\nex: Backend, FrontEnd, database, mobile\n:   ");
         for (String x : s.split(",")) {
             Boolean isRx = REGEX_DECORATOR.matcher(x.trim()).matches();
             if(isRx) {

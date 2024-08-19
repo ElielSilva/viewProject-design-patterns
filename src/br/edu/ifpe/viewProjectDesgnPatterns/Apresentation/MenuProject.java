@@ -143,6 +143,8 @@ public class MenuProject {
                             copyP.set(new BackendDecorator(copyP.get()));
                         } else if (t.equals(ProjectTypes.DATABASE)) {
                             copyP.set(new DatabaseDecorator(copyP.get()));
+                        } else if (t.equals(ProjectTypes.MOBILE)) {
+                            copyP.set(new MobileDecorator(copyP.get()));
                         }
                     }
             );

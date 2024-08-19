@@ -1,13 +1,8 @@
 package br.edu.ifpe.viewProjectDesgnPatterns.Services;
 import br.edu.ifpe.viewProjectDesgnPatterns.Entities.Project;
 import br.edu.ifpe.viewProjectDesgnPatterns.Exception.DataContractValidate;
-import br.edu.ifpe.viewProjectDesgnPatterns.Exception.NotFoundEntity;
-import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Logger.Logger;
-import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Logger.LoggerType;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.FabricValidate;
 import br.edu.ifpe.viewProjectDesgnPatterns.Shareds.Validator.IValidateAdapter;
-
-import java.util.List;
 
 public class ProjectService extends ServiceGeneric<Project> {
     private static ProjectService InstanceService;
