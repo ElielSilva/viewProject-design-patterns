@@ -19,7 +19,7 @@ public class MenuProject {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println(MENU.toUpperCase());
-            opcao = Integer.parseInt(ExtensionsIO.getInput("Digite a opção desejada: "));
+            opcao = ExtensionsIO.getInputInt("Digite a opção desejada: ");
             switch (opcao) {
                 case 0:
                     ExtensionsIO.optionChose("VOLTAR");
@@ -133,22 +133,12 @@ public class MenuProject {
     }
 
     private void printProjectDecorator(Project p) {
-        AtomicReference<IDecorator> copyP = new AtomicReference<>(p);
+        IDecorator decoratedProject = p;
         if (!p.getProjectTypes().isEmpty()) {
-            p.getProjectTypes().forEach(
-                    t -> {
-                        if (t.equals(ProjectTypes.FRONTEND)) {
-                            copyP.set(new FrontendDecorator(copyP.get()));
-                        } else if (t.equals(ProjectTypes.BACKEND)) {
-                            copyP.set(new BackendDecorator(copyP.get()));
-                        } else if (t.equals(ProjectTypes.DATABASE)) {
-                            copyP.set(new DatabaseDecorator(copyP.get()));
-                        } else if (t.equals(ProjectTypes.MOBILE)) {
-                            copyP.set(new MobileDecorator(copyP.get()));
-                        }
-                    }
-            );
-            System.out.println(copyP);
+            for (ProjectTypes type : p.getProjectTypes()) {
+                decoratedProject = type.getDecorator(decoratedProject);
+            }
+            System.out.println(decoratedProject);
         } else {
             System.out.println(p);
         }

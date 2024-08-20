@@ -16,7 +16,7 @@ public class MenuUser {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println(MENU.toUpperCase());
-            opcao = Integer.parseInt(ExtensionsIO.getInput("DIGITE A OPÇÃO DESEJADA: "));
+            opcao = ExtensionsIO.getInputInt("DIGITE A OPÇÃO DESEJADA: ");
             switch (opcao) {
                 case 0:
                     ExtensionsIO.optionChose("VOLTAR");

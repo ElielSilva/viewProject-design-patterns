@@ -18,7 +18,6 @@ public class MenuLogin {
                 User user = ExtensionsBuilds.createNewUseLogin().build();
                 return facade.searchUser(
                         u -> user.getEmail().equals(u.getEmail())
-                //                && user.getPassword().equals(u.getPassword())
                 );
             } catch (NotFoundEntity e) {
                 ExtensionsIO.optionChose("Email ou senha estão invalidos");

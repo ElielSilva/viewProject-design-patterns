@@ -22,6 +22,19 @@ public class ExtensionsIO {
         addLn();
     }
 
+    public static Integer getInputInt(String prompt) {
+        int output = 0;
+        try {
+            System.out.println(prompt.toUpperCase());
+            output = Integer.parseInt(new Scanner(System.in).nextLine());
+        } catch (Exception e) {
+            System.out.println("ERRO VALOR INVALIDO");
+            addLn();
+            getInput(prompt);
+        }
+        return  output;
+    }
+
     public static String getInput(String prompt) {
         System.out.println(prompt.toUpperCase());
         return new Scanner(System.in).nextLine();

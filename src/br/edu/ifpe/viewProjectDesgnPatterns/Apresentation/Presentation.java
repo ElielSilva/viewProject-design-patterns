@@ -21,7 +21,7 @@ public class Presentation {
         int opcao = -1;
         while (opcao != 0) {
             ExtensionsIO.addLn();
-            opcao = Integer.parseInt(ExtensionsIO.getInput(MENU_MAIN.toUpperCase()));
+            opcao = ExtensionsIO.getInputInt(MENU_MAIN.toUpperCase());
             switch (opcao) {
                 case 0:
                     ExtensionsIO.optionChose("Encerrar".toUpperCase());
