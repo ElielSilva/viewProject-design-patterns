@@ -25,6 +25,18 @@ public class Project extends EntityBase implements IDecorator {
         this.userId = build.userId;
     }
 
+    public Project clone() {
+        return new Project.Build()
+                .id(super.getId())
+                .name(this.getName())
+                .description(this.getDescription())
+                .projectTypes(this.getProjectTypes())
+                .Status(this.getStatus())
+                .startDate(this.getStartDate())
+                .endDate(this.getEndDate())
+                .userId(this.getUserId()).build();
+    }
+
     @Override
     public String toString() {
         return "Project = {" +

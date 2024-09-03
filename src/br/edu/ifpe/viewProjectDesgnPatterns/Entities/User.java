@@ -14,6 +14,16 @@ public class User extends EntityBase {
         this.role = build.role;
     }
 
+    public User clone() {
+        return new User.Build()
+                .id(super.getId())
+                .name(this.getName())
+                .email(this.getEmail())
+                .password(this.getPassword())
+                .role(this.getRole())
+                .build();
+    }
+
     @Override
     public String toString() {
         return "User = {" +

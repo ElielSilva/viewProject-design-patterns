@@ -115,3 +115,8 @@ Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMI
 Adding entityUser = {name='client', email='m@m.com', password='#Cc123', role=CLIENT}
 Adding entityProject = {id= 1, VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-08-20, endDate=null, userId=2}
 Adding entityProject = {id= 2, VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-08-20, endDate=null, userId=2}
+Adding entityUser = {name='eliel', email='a@a.com', password='#Ee123', role=ADMIN}
+Adding entityUser = {name='junio', email='j@j.com', password='#Jj123', role=ADMIN}
+Adding entityUser = {name='client', email='m@m.com', password='#Cc123', role=CLIENT}
+Adding entityProject = {id= 1, VALUE=1000.0, name='aaaaaa', description='aaaaaaaa', status='INITIAL', startDate=2024-09-03, endDate=null, userId=2}
+Adding entityProject = {id= 2, VALUE=1000.0, name='bbbbbbb', description='bbbbbbbbb', status='INITIAL', startDate=2024-09-03, endDate=null, userId=2}

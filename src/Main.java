@@ -12,6 +12,10 @@ public class Main {
         User testElielAdmin = new User.Build().name("eliel").email("a@a.com").password("#Ee123").role(Role.ADMIN).build();
         User testJunioAdmin = new User.Build().name("junio").email("j@j.com").password("#Jj123").role(Role.ADMIN).build();
         User testclient = new User.Build().name("client").email("m@m.com").password("#Cc123").role(Role.CLIENT).build();
+        User testclient2 = testclient.clone();
+
+        System.out.println(testclient.getName());
+        System.out.println(testclient2.getName());
         a.add(testElielAdmin);
         a.add(testJunioAdmin);
         a.add(testclient);
